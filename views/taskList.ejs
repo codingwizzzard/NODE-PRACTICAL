@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords"
+    content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template" />
+  <meta name="description"
+    content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inspired from Bootstrap Framework" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Admin Panel</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../dist/css/style.min.css" rel="stylesheet" />
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+  <style>
+    .custom-card {
+      background-color: #f8f9fa;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('partials/navbar.ejs') %>
+    <div class="container mt-4">
+      <h1 class="mb-4">Task List</h1>
+      <a href="/addTasks" class="btn btn-primary mb-3">Add New Task</a>
+      <div class="row">
+        <% tasks.forEach(task=> { %>
+          <div class="col-md-4 mb-4">
+            <div class="card custom-card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= task.title %>
+                </h5>
+                <p class="card-text">
+                  <%= task.description %>
+                </p>
+                <% if (task.category) { %>
+                  <p class="card-text"><strong>Category:</strong>
+                    <%= task.category.title %>
+                  </p>
+                  <% } else { %>
+                    <p class="card-text"><strong>Category:</strong> Not available</p>
+                    <% } %>
+                      <a href="/edit/<%= task._id %>" class="btn btn-warning">Edit</a>
+                      <a href="/delete/<%= task._id %>" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
